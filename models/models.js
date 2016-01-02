@@ -1,6 +1,9 @@
 var path = require('path');
 
-var url =process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
+var databaseURL = process.env.DATABASE_URL          || 'sqlite://:@:/quiz';
+var databaseStorage  = process.env.DATABASE_STORAGE || 'quiz.sqlite';
+
+var url =databaseURL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
 var DB_name = (url[6]||null);
 var user = (url[2]||null);
 var pwd = (url[3]||null);
@@ -8,11 +11,11 @@ var protocol = (url[1]||null);
 var dialect = (url[1]||null);
 var port = (url[5]||null);
 var host = (url[4]||null);
-var storage = process.env.DATABASE_STORAGE;
-
+var storage = databaseStorage;
 
 var Sequelize = require('sequelize');
 
+/*
 var sequelize = new Sequelize(DB_name, user, pwd,
   { dialect: protocol,
     protocol: protocol,
@@ -22,9 +25,12 @@ var sequelize = new Sequelize(DB_name, user, pwd,
     omitNull: true
   }
 );
+*/
+
+var sequelize = new Sequelize('sqlite://@:/', { storage: storage });
 
 var quiz_path = path.join(__dirname, 'quiz');
-var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
+var Quiz = sequelize.import(quiz_path);
 
 exports.Quiz = Quiz;
 
@@ -36,8 +42,7 @@ sequelize.sync().then(function(){
                  });
       Quiz.create({pregunta: 'Capital de Portugal',
                     respuesta:'Lisboa'
-                  });
-      .then(function(){console.log('Base de datos inicializada')});
+                  }).then(function(){console.log('Base de datos inicializada')});
     };
   });
 });
