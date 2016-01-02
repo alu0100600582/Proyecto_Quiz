@@ -1,9 +1,9 @@
 var models = require('../models/models');
-var quiz = models.Quiz;
+var Quiz = models.Quiz;
 
 
 exports.load = function(req, res, next, quizId) {
-  models.Quiz.find(quizId).then(
+  Quiz.find(quizId).then(
       function(quiz) {
         if (quiz) {
           req.quiz = quiz;
@@ -14,7 +14,7 @@ exports.load = function(req, res, next, quizId) {
 };
 
 exports.index = function(req, res) {
-  models.Quiz.findAll().then(function(quizes){
+  Quiz.findAll().then(function(quizes){
     res.render('quizes/index', { quizes: quizes});
   }).catch(function(error) { next(error); });
 };
