@@ -3,7 +3,7 @@ var Quiz = models.Quiz;
 
 
 exports.load = function(req, res, next, quizId) {
-  Quiz.find(quizId).then(
+  Quiz.findById(quizId).then(
       function(quiz) {
         if (quiz) {
           req.quiz = quiz;
