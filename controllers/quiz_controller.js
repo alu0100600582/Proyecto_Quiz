@@ -1,49 +1,19 @@
-var Quiz = require('../models/quiz_model');
 var models = require('../models/models');
 
 var quiz = new Quiz();
-var current = quiz.randomQuestion();
 
-exports.question = function(req,res) {
+exports.show = function(req,res) {
   models.Quiz.findAll().success(function(quiz){
-  res.render('quizes/question', {pregunta: quiz[0].pregunta});
+  res.render('quizes/show', {quiz: quiz});
   })
 };
 
 exports.answer = function(req, res) {
-  models.Quiz.findAll().success(function(quiz){
+  models.Quiz.find(req.params.quizId).then(function(quiz){
   if (req.query.respuesta === quiz[0].respuesta) {
     res.render('quizes/answer', {respuesta: 'Correcto'});
   }else{
   res.render('quizes/answer', {respuesta: 'Incorrecto'});
 }
 })
-};
-
-exports.questions = function(req,res) {
-  var nPreg = quiz.numQuestions();
-  var array = new Array(nPreg);
-
-  for(var i=0; i<nPreg; i++) {
-    array[i] = (quiz.getQ(i));
-  }
-
-  res.render('quizes/questions', {prg: array})
-};
-
-exports.specificQuestion = function(req, res) {
-  var id = req.params.id;
-  var nPreg = quiz.numQuestions();
-
-  if(id < 1 || id > nPreg){
-    res.render('quizes/SpecificQuestion', {prg: "No existe esa pregunta."})
-  }
-  else if(isNaN(id) === true) {
-    res.render('quizes/SpecificQuestion', {prg: "Error en la URL."})
-  }
-  else {
-    current = quiz.q[id-1];
-
-    res.render('quizes/question', {pregunta: current.pregunta});
-  }
 };
