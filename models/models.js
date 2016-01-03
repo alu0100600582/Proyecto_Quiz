@@ -32,7 +32,7 @@ var sequelize = new Sequelize('sqlite://@:/', { storage: storage });
 var quiz_path = path.join(__dirname, 'quiz');
 var Quiz = sequelize.import(quiz_path);
 
-var comment_path = path.join(__dirname, 'coment');
+var comment_path = path.join(__dirname, 'comment');
 var Comment = sequelize.import(comment_path);
 
 Comment.belongsTo(Quiz);
