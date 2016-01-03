@@ -28,3 +28,10 @@ exports.answer = function(req, res) {
   if (req.query.respuesta === req.quiz.respuesta) resultado = 'Correcto';
   res.render('quizes/answer', { quiz: req.quiz, respuesta: resultado })
 };
+
+exports.new = function(req,res){
+  var quiz = Quiz.build(
+    {pregunta: 'Pregunta', respuesta: 'Respuesta'}
+  );
+  res.render('quizes/new', {quiz, quiz});
+ };
