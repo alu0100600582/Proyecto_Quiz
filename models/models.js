@@ -32,7 +32,14 @@ var sequelize = new Sequelize('sqlite://@:/', { storage: storage });
 var quiz_path = path.join(__dirname, 'quiz');
 var Quiz = sequelize.import(quiz_path);
 
+var comment_path = path.join(__dirname, 'coment');
+var Comment = sequelize.import(comment_path);
+
+Comment.belongsTo(Quiz);
+Quiz.hasMany(Comment);
+
 exports.Quiz = Quiz;
+exports.Comment = Comment;
 
 sequelize.sync().then(function(){
   Quiz.count().then(function(count){
