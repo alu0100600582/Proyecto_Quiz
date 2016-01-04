@@ -6,12 +6,14 @@ var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Quiz', errors: [] });
 });
 
 router.param('quizId', quizController.load);
+router.param('commentId', commentController.load);
 
 router.get('/quizes',                           quizController.index);
 router.get('/quizes/:quizId(\\d+)',             quizController.show);
@@ -24,6 +26,7 @@ router.delete('/quizes/:quizId(\\d+)',          sessionController.loginRequired,
 
 router.get('/quizes/:quizId(\\d+)/comments/new',    commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',       commentController.create);
+router.put('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',    sessionController.loginRequired, commentController.publish);
 
 router.get('/login',     sessionController.new);
 router.post('/login',    sessionController.create);
