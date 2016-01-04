@@ -35,7 +35,7 @@ exports.create =function(req,res){
 
 
 exports.publish = function(req, res){
-    req.comment.publicado = true;
+    req.Comment.publicado = true;
 
     req.comment.save( {fields: ["publicado"]})
     .then( function() { res.redirect('/quizes/'+req.params.quizId);})
