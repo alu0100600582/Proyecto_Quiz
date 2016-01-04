@@ -1,9 +1,7 @@
 var models = require('../models/models');
-var Quiz = models.Quiz;
-
 
 exports.load = function(req, res, next, quizId) {
-  Quiz.find({
+  models.Quiz.find({
       where: { id: Number(quizId)},
       include: [{model: models.Comment}]
     }).then(function(quiz) {
@@ -16,7 +14,7 @@ exports.load = function(req, res, next, quizId) {
 };
 
 exports.index = function(req, res) {
-  Quiz.findAll().then(function(quizes){
+  models.Quiz.findAll().then(function(quizes){
     res.render('quizes/index', { quizes: quizes, errors: []});
   }).catch(function(error) { next(error); });
 };
@@ -32,7 +30,7 @@ exports.answer = function(req, res) {
 };
 
 exports.new = function(req,res){
-  var quiz = Quiz.build(
+  var quiz = models.Quiz.build(
     {pregunta: 'Pregunta', respuesta: 'Respuesta'}
   );
   res.render('quizes/new', {quiz, quiz, errors: []});
@@ -40,7 +38,7 @@ exports.new = function(req,res){
 
 
  exports.create =function(req,res){
-   var quiz = Quiz.build(req.body.quiz);
+   var quiz = models.Quiz.build(req.body.quiz);
 
    quiz.validate().then(function(err){
      if(err){
