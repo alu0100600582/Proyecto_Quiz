@@ -36,7 +36,7 @@ exports.index = function(req, res) {
     function(quizes) {
       res.render('quizes/index.ejs', {quizes: quizes, errors: []});
     }
-  ).catch(function(error) { next(error) });
+  ).catch(function(error){next(error)});
 };
 
 exports.show = function(req,res) {
@@ -46,7 +46,7 @@ exports.show = function(req,res) {
 exports.answer = function(req, res) {
   var resultado = 'Incorrecto';
   if (req.query.respuesta === req.quiz.respuesta) resultado = 'Correcto';
-  res.render('quizes/answer', { quiz: req.quiz, respuesta: resultado, errors: [] })
+  res.render('quizes/answer', { quiz: req.quiz, respuesta: resultado, errors: [] });
 };
 
 exports.new = function(req,res){
