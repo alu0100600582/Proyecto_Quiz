@@ -1,14 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define(
-  	'Comment',
-    { texto: {
+  return sequelize.define('Comment',{
+    texto: {
         type: DataTypes.STRING,
         validate: { notEmpty: {msg: "--> Falta Comentario"}}
-      },
-      publicado: {
+    },
+    publicado: {
       	type: DataTypes.BOOLEAN,
       	defaultValue: false
-      }
     }
-  );
+  });
 }

@@ -6,7 +6,6 @@ var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Quiz', errors: [] });
