@@ -1,6 +1,6 @@
 var path = require('path');
 
-var databaseURL = process.env.DATABASE_URL  || 'sqlite://:@:/quiz';
+var databaseURL = process.env.DATABASE_URL          || 'sqlite://:@:/';
 
 var url=databaseURL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
 var DB_name = (url[6]||null);
@@ -14,6 +14,7 @@ var storage = process.env.DATABASE_STORAGE;
 
 // Cargar Modelo ORM
 var Sequelize = require('sequelize');
+
 
 // Usar BBDD SQLite o Postgres
 var sequelize = new Sequelize(DB_name, user, pwd,
