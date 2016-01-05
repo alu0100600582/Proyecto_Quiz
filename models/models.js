@@ -43,6 +43,7 @@ var User = sequelize.import(user_path);
 Comment.belongsTo(Quiz);
 Quiz.hasMany(Comment);
 
+// los quizes pertenecen a un usuario registrado
 Quiz.belongsTo(User);
 User.hasMany(Quiz);
 
