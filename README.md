@@ -15,4 +15,4 @@ Mi GitHub page: http://alu0100600582.github.io/
 
 Repositorio Github: https://github.com/alu0100600582/Proyecto_Quiz/
 
-Despliegue en Heroku:
+Despliegue en Heroku: https://quiz-proyecto-2015.herokuapp.com/
