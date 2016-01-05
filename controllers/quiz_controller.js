@@ -33,7 +33,7 @@ exports.new = function(req,res){
   var quiz = models.Quiz.build(
     {pregunta: 'Pregunta', respuesta: 'Respuesta'}
   );
-  res.render('quizes/new', {quiz, quiz, errors: []});
+  res.render('quizes/new', {quiz: quiz, errors: []});
  };
 
 
