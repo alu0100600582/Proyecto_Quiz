@@ -38,6 +38,12 @@ exports.answer = function(req, res) {
 };
 
 exports.index = function(req,res) {
+  models.Quiz.findAll().then(function(quizes){
+    res.render('quizes/index', {quizes: quizes, errors: []});
+  })
+};
+
+exports.perfil = function(req,res) {
   var options = {};
   if(req.user){
     options.where = {UserId: req.user.id}
