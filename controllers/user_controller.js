@@ -13,7 +13,7 @@ exports.ownershipRequired = function(req, res, next){
     }
 };
 
-// Comprueba si el usuario esta registrado en users
+
 exports.autenticar = function(login, password, callback) {
 	models.User.find({
         where: {
@@ -24,12 +24,13 @@ exports.autenticar = function(login, password, callback) {
     		if(user.password === password){
             	callback(null, user);
         	}
-        	else { callback(new Error('Password erróneo.')); }
-      	} else { callback(new Error('No existe el usuario: ' + login))}
+        else { callback(new Error('Password erróneo.')); }
+      	}
+      else { callback(new Error('No existe el usuario: ' + login))}
     }).catch(function(error){callback(error)});
 };
 
-// Autoload :id
+
 exports.load = function(req, res, next, userId) {
   models.User.find({
             where: {
