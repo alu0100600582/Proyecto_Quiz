@@ -42,7 +42,7 @@ exports.index = function(req,res) {
   if(req.user){
     options.where = {UserId: req.user.id}
   }
-  models.Quiz.findAll().then(function(quizes){
+  models.Quiz.findAll(options).then(function(quizes){
     res.render('quizes/index', {quizes: quizes, errors: []});
   })
 };
