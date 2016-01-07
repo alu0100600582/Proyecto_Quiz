@@ -21,7 +21,7 @@ exports.autenticar = function(login, password, callback) {
         }
     }).then(function(user) {
     	if (user) {
-    		if(user.password === password)){
+    		if(user.password === password){
             	callback(null, user);
         	}
         	else { callback(new Error('Password erróneo.')); }
