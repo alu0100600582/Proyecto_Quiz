@@ -107,4 +107,5 @@ exports.destroy = function(req, res) {
     delete req.session.user;
     res.redirect('/');
   }).catch(function(error){next(error)});
+  
 };
