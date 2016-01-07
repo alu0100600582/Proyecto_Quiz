@@ -36,14 +36,7 @@ module.exports = function(sequelize, DataTypes) {
                 defaultValue: false
             }
         },
-        {
-            instanceMethods: {
-                verifyPassword: function (password) {
-                    var encripted = crypto.createHmac('sha1', key).update(password).digest('hex');
-                    return encripted === this.password;
-                }
-            }
-        }
+
     );
 
     return User;
