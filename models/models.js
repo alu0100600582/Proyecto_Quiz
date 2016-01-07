@@ -53,26 +53,21 @@ exports.Comment = Comment;
 exports.User = User;
 
 // sequelize.sync() inicializa tabla de preguntas en DB
-sequelize.sync().then(function() {
-  // then(..) ejecuta el manejador una vez creada la tabla
-  User.count().then(function (count){
-    if(count === 0) {   // la tabla se inicializa solo si está vacía
-      User.bulkCreate(
-        [ {username: 'admin',   password: '1234', isAdmin: true},
-          {username: 'pepe',   password: '5678'} // el valor por defecto de isAdmin es 'false'
-        ]
-      ).then(function(){console.log('Base de datos (tabla user) inicializada');
 
-        Quiz.count().then(function (count){
-          if(count === 0) {   // la tabla se inicializa solo si está vacía
-            Quiz.bulkCreate(
-              [ {pregunta: 'Capital de Italia',   respuesta: 'Roma', UserId: 2}, // estos quizes pertenecen al usuario pepe (2)
-                {pregunta: 'Capital de Portugal', respuesta: 'Lisboa', UserId: 2}
-              ]
-            ).then(function(){console.log('Base de datos (tabla quiz) inicializada')});
-          };
-        });
-      });
-    };
-  });
+sequelize.sync().then(function() {
+	Quiz.count().then(function (count) {
+		if(count === 0) {
+			Quiz.create({pregunta: 'Capital de Italia', respuesta: 'Roma'});
+			Quiz.create({pregunta: 'Capital de Portugal', respuesta: 'Lisboa'})
+			.then(function(){console.log('Base de datos (quiz) inicializada');});
+		}
+	});
+	User.count().then(function (count) {
+		if(count === 0) {
+			User.create({username: 'admin',
+						password: '1234'})
+			.then(function(){console.log('Base de datos (usuarios) inicializada');});
+		}
+	});
+
 });
