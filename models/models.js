@@ -64,8 +64,8 @@ sequelize.sync().then(function() {
 	});
 	User.count().then(function (count) {
 		if(count === 0) {
-			User.create({username: 'admin',
-						password: '1234'})
+			User.create({username: 'admin',password: '1234', isAdmin: true});
+      User.create({username: 'pepe',password: '5678'})
 			.then(function(){console.log('Base de datos (usuarios) inicializada');});
 		}
 	});
