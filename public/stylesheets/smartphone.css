@@ -1,6 +1,6 @@
-body {background: #333;}
+body {background: #A9F5A9;}
 
-#page-wrap:after {content: "Smartphone Layaout";}
+#page-wrap:after {}
 
 h2 span, section h3 {display: none;}
 body                {font-size: xx-large;;}

@@ -1,8 +1,16 @@
-body {background: #999;}
+body {background: #A9F5A9;}
 
-#page-wrap:after {content: "Wide Layaout";}
+#page-wrap:after {}
 
-nav       {float: left; width: 15%; height: 200px;}
+#log {
+float: right;
+}
+
+#titulo {
+text-align:center;
+}
+
+nav       {background: #CADCDC;float: left; width: 15%; height: 450px;}
 nav span  {margin: 0px 0px 0px 0px;}
-section   {float: right; width: 80%; height: 200px;}
-footer    {clear: both; display: block;}
+section   {background: #CADCDC;float: right; width: 80%; height: 450px;}
+footer    {background: #CADCDC;clear: both; display: block; bottom: 0;}
