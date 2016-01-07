@@ -53,7 +53,7 @@ exports.Comment = Comment;
 exports.User = User;
 
 // sequelize.sync() inicializa tabla de preguntas en DB
-sequelize.sync({force: true}).then(function() {
+sequelize.sync().then(function() {
   // then(..) ejecuta el manejador una vez creada la tabla
   User.count().then(function (count){
     if(count === 0) {   // la tabla se inicializa solo si está vacía
@@ -61,8 +61,8 @@ sequelize.sync({force: true}).then(function() {
         [ {username: 'admin',   password: '1234', isAdmin: true},
           {username: 'pepe',   password: '5678'} // el valor por defecto de isAdmin es 'false'
         ]
-      ).then(function(){
-        console.log('Base de datos (tabla user) inicializada');
+      ).then(function(){console.log('Base de datos (tabla user) inicializada');
+
         Quiz.count().then(function (count){
           if(count === 0) {   // la tabla se inicializa solo si está vacía
             Quiz.bulkCreate(
